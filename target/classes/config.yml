@@ -1,0 +1,5 @@
+tips:
+  - "Remember to drink water!"
+  - "Don't forget to stretch your legs!"
+  - "Stay hydrated and take breaks!"
+tipInterval: 600 # 小提示间隔时间（秒）

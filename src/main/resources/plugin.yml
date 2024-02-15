@@ -1,0 +1,4 @@
+name: TIPS
+version: '${project.version}'
+main: sensen1234.sencraft.tips.TIPS
+api-version: '1.13'
