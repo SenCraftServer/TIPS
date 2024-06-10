@@ -1,5 +1,7 @@
 tips:
-  - "Remember to drink water!"
-  - "Don't forget to stretch your legs!"
-  - "Stay hydrated and take breaks!"
-tipInterval: 600 # 小提示间隔时间（秒）
+  - "Tip 1"
+  - "Tip 2"
+  - "Tip 3"
+tipstext: "Tip: §r "
+tipstextcolor: "§a"  # Minecraft颜色代码
+tipInterval: 3600  # 以秒为单位的时间间隔
