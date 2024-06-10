@@ -11,6 +11,8 @@ import java.util.Random;
 public class TIPS extends JavaPlugin {
 
     private List<String> tips;
+    private String tipstext;
+    private String tipstextcolor;
     private Random random;
 
     @Override
@@ -23,6 +25,8 @@ public class TIPS extends JavaPlugin {
     private void loadConfig() {
         FileConfiguration config = getConfig();
         tips = config.getStringList("tips");
+        tipstext = config.getString("tipstext", "");
+        tipstextcolor = config.getString("tipstextcolor", "");
         random = new Random();
     }
 
@@ -37,9 +41,9 @@ public class TIPS extends JavaPlugin {
     }
 
     private void sendRandomTip() {
-        if (!tips.isEmpty()) {
+        if (tips != null && !tips.isEmpty()) {
             String tip = tips.get(random.nextInt(tips.size()));
-            Bukkit.broadcastMessage("[TIPS] " + tip); // 发送小提示到公屏
+            Bukkit.broadcastMessage(tipstextcolor + tipstext + tip); // 发送小提示到公屏
         }
     }
 }
