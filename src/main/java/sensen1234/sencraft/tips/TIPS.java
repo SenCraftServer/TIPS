@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -40,10 +41,37 @@ public class TIPS extends JavaPlugin {
         }.runTaskTimer(this, interval * 20, interval * 20); // 以ticks为单位，每个tick为1/20秒
     }
 
+    private void sendFormattedTip(String message) {
+        int maxLineLength = 60; // 定义最大行长度
+        List<String> lines = new ArrayList<>();
+        StringBuilder currentLine = new StringBuilder();
+
+        // 智能分割消息
+        for (String word : message.split(" ")) {
+            if (currentLine.length() + word.length() <= maxLineLength) {
+                currentLine.append(word).append(" ");
+            } else {
+                lines.add(currentLine.toString().trim());
+                currentLine = new StringBuilder(word + " ");
+            }
+        }
+
+        // 添加最后一行
+        if (currentLine.length() > 0) {
+            lines.add(currentLine.toString().trim());
+        }
+
+        // 发送消息到公屏
+        for (String line : lines) {
+            Bukkit.broadcastMessage(line);
+        }
+    }
+
     private void sendRandomTip() {
         if (tips != null && !tips.isEmpty()) {
             String tip = tips.get(random.nextInt(tips.size()));
-            Bukkit.broadcastMessage(tipstextcolor + tipstext + tip); // 发送小提示到公屏
+            String formattedTip = tipstextcolor + tipstext + tip;
+            sendFormattedTip(formattedTip);
         }
     }
 }
